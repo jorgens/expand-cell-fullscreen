@@ -23,10 +23,10 @@ define([
 
 		$('.cell.code_cell.selected div.output_wrapper div.output_subarea').css({'background-color' : 'white'})
 		c = $( ".cell.code_cell.selected div.output_wrapper canvas" )
-		c[0].style.width = width*2+"px"
-		c[0].style.height = height*2+"px"
-		c[0].height = height
-		c[0].width = width
+		c[0].style.width = width+"px"
+		c[0].style.height = height+"px"
+		c[0].height = 2*height
+		c[0].width = 2*width
 
 	  } else {
 	    if (document.exitFullscreen) {
