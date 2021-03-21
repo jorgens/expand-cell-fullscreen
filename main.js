@@ -31,9 +31,9 @@ define([
 	}
 
     function load_ipython_extension() {
-		
+
         var handler = function () {
-            $('.cell.code_cell.selected').each( function() { toggleFullscreen(this) } ).css({'background-color' : 'white'}); //expand selected cell
+            $('.cell.code_cell.selected div.output_wrapper div.output div.output_area div.output_result').each( function() { toggleFullscreen(this) } ).css({'background-color' : 'white','max-width':'100%'}); //expand selected cell
         };
 
         var action = {
