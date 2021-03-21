@@ -19,11 +19,14 @@ define([
 	      elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 	    }
 		height = window.innerHeight
-	  	width = window.innerWidth - 200;
-		c = $( ".cell.code_cell.selected div.output_wrapper canvas" ).css({'width': width+'px','height': height+'px'})
-		ctx = c[0].getContext('2d')
-		ctx.canvas.height = height
-		ctx.canvas.width = width
+	  	width = window.innerWidth - 300
+
+		$('.cell.code_cell.selected div.output_wrapper div.output_subarea').css({'background-color' : 'white'})
+		c = $( ".cell.code_cell.selected div.output_wrapper canvas" )
+		c[0].style.width = width*2
+		c[0].style.height = height*2
+		c[0].height = height
+		c[0].width = width
 
 	  } else {
 	    if (document.exitFullscreen) {
@@ -35,10 +38,11 @@ define([
 	    } else if (document.webkitExitFullscreen) {
 	      document.webkitExitFullscreen();
 	    }
-		c = $( ".cell.code_cell.selected div.output_wrapper canvas" ).css({'width': '640px','height': '640px'})
-		ctx = c[0].getContext('2d')
-		ctx.canvas.height = 1280
-		ctx.canvas.width = 1280
+		c = $( ".cell.code_cell.selected div.output_wrapper canvas" )
+		c[0].style.width = '640px'
+		c[0].style.height = '640px'
+		c[0].height = 1280
+		c[0].width = 1280
 	  }
 	}
 
