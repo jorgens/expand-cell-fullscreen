@@ -36,7 +36,8 @@ define([
         var handler = function () {
 			height = window.innerHeight
 			width = window.innerWidth - 200;
-            $('.cell.code_cell.selected div.output_wrapper div.jupyter-threejs canvas').each( function() { toggleFullscreen(this) } ).height(height).width(width).css({'background-color' : 'white','width': width+'px','height': height+'px'}); //expand selected cell
+			$('.cell.code_cell.selected div.output_wrapper div.jupyter-threejs canvas').height(height).width(width).css({'background-color' : 'white','width': width+'px','height': height+'px'}); //expand selected cell
+			$('.cell.code_cell.selected div.output_wrapper div.jupyter-widgets-view').each( function() { toggleFullscreen(this) } )
         };
 
         var action = {
