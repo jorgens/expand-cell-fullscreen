@@ -8,6 +8,7 @@ define([
 	  elem = elem || document.documentElement;
 	  if (!document.fullscreenElement && !document.mozFullScreenElement &&
 	    !document.webkitFullscreenElement && !document.msFullscreenElement) {
+
 	    if (elem.requestFullscreen) {
 	      elem.requestFullscreen();
 	    } else if (elem.msRequestFullscreen) {
@@ -33,7 +34,9 @@ define([
     function load_ipython_extension() {
 
         var handler = function () {
-            $('.cell.code_cell.selected div.output_wrapper div.output_subarea').each( function() { toggleFullscreen(this) } ).css({'background-color' : 'white'}); //expand selected cell
+			height = window.innerHeight
+			width = window.innerWidth - 200;
+            $('.cell.code_cell.selected div.output_wrapper div.jupyter-threejs canvas').each( function() { toggleFullscreen(this) } ).height(height).width(width).css({'background-color' : 'white','width': width+'px','height': height+'px'}); //expand selected cell
         };
 
         var action = {
