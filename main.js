@@ -20,7 +20,7 @@ define([
 	    }
 		height = window.innerHeight
 	  	width = window.innerWidth - 200;
-		c = elem.find( "canvas" ).css({'width': width+'px','height': height+'px'})
+		c = $( ".cell.code_cell.selected div.output_wrapper canvas" ).css({'width': width+'px','height': height+'px'})
 		ctx = c[0].getContext('2d')
 		ctx.canvas.height = height
 		ctx.canvas.width = width
@@ -35,8 +35,7 @@ define([
 	    } else if (document.webkitExitFullscreen) {
 	      document.webkitExitFullscreen();
 	    }
-		elem.find("canvas").height(height).width(width).css({'width': '640px','height': '640px'}); //expand selected cell
-		c = elem.find( "canvas" ).css({'width': width+'px','height': height+'px'})
+		c = $( ".cell.code_cell.selected div.output_wrapper canvas" ).css({'width': '640px','height': '640px'})
 		ctx = c[0].getContext('2d')
 		ctx.canvas.height = 1280
 		ctx.canvas.width = 1280
