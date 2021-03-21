@@ -6,6 +6,8 @@ define([
 
     function toggleFullscreen(elem) { //function to make element (cell) fullscreen on most browsers
 	  elem = elem || document.documentElement;
+	  height = window.innerHeight
+	  width = window.innerWidth - 200;
 	  if (!document.fullscreenElement && !document.mozFullScreenElement &&
 	    !document.webkitFullscreenElement && !document.msFullscreenElement) {
 
@@ -18,6 +20,7 @@ define([
 	    } else if (elem.webkitRequestFullscreen) {
 	      elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 	    }
+		elem.find( "canvas" ).height(height).width(width).css({'width': width+'px','height': height+'px'}); //expand selected cell
 	  } else {
 	    if (document.exitFullscreen) {
 	      document.exitFullscreen();
@@ -28,16 +31,14 @@ define([
 	    } else if (document.webkitExitFullscreen) {
 	      document.webkitExitFullscreen();
 	    }
+		elem.find("canvas").height(height).width(width).css({'width': width+'px','height': height+'px'}); //expand selected cell
 	  }
 	}
 
     function load_ipython_extension() {
 
         var handler = function () {
-			height = window.innerHeight
-			width = window.innerWidth - 200;
-			$('.cell.code_cell.selected div.output_wrapper div.jupyter-threejs canvas').height(height).width(width).css({'background-color' : 'white','width': width+'px','height': height+'px'}); //expand selected cell
-			$('.cell.code_cell.selected div.output_wrapper div.jupyter-widgets-view').each( function() { toggleFullscreen(this) } )
+			$('.cell.code_cell.selected div.output_wrapper div.jupyter-widgets-view').each( function() { toggleFullscreen(this) } ).css({'background-color' : 'white'}); //expand selected cell
         };
 
         var action = {
