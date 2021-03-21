@@ -6,8 +6,6 @@ define([
 
     function toggleFullscreen(elem) { //function to make element (cell) fullscreen on most browsers
 	  elem = elem || document.documentElement;
-	  height = window.innerHeight
-	  width = window.innerWidth - 200;
 	  if (!document.fullscreenElement && !document.mozFullScreenElement &&
 	    !document.webkitFullscreenElement && !document.msFullscreenElement) {
 
@@ -20,7 +18,13 @@ define([
 	    } else if (elem.webkitRequestFullscreen) {
 	      elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
 	    }
-		elem.find( "canvas" ).height(height).width(width).css({'width': width+'px','height': height+'px'}); //expand selected cell
+		height = window.innerHeight
+	  	width = window.innerWidth - 200;
+		c = elem.find( "canvas" ).css({'width': width+'px','height': height+'px'})
+		ctx = c[0].getContext('2d')
+		ctx.canvas.height = height
+		ctx.canvas.width = width
+
 	  } else {
 	    if (document.exitFullscreen) {
 	      document.exitFullscreen();
@@ -31,14 +35,18 @@ define([
 	    } else if (document.webkitExitFullscreen) {
 	      document.webkitExitFullscreen();
 	    }
-		elem.find("canvas").height(height).width(width).css({'width': width+'px','height': height+'px'}); //expand selected cell
+		elem.find("canvas").height(height).width(width).css({'width': '640px','height': '640px'}); //expand selected cell
+		c = elem.find( "canvas" ).css({'width': width+'px','height': height+'px'})
+		ctx = c[0].getContext('2d')
+		ctx.canvas.height = 1280
+		ctx.canvas.width = 1280
 	  }
 	}
 
     function load_ipython_extension() {
 
         var handler = function () {
-			$('.cell.code_cell.selected div.output_wrapper div.jupyter-widgets-view').each( function() { toggleFullscreen(this) } ).css({'background-color' : 'white'}); //expand selected cell
+			$('.cell.code_cell.selected div.output_wrapper div.output_subarea').each( function() { toggleFullscreen(this) } ).css({'background-color' : 'white'}); //expand selected cell
         };
 
         var action = {
